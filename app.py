@@ -97,15 +97,10 @@ elif menu == "Etude sur l'échantillon entier":
 # Etude cluster spécifique
 elif menu == "Etude sur un échantillon réduit (cluster Kmean 0)":
     st.title("📊 Analyse : Cluster spécifique (Kmeans 0)")
-    df = df_kmeans0
-    df_rk = df_ranking_K0
-
-    elif section == "Étude sur un cluster spécifique (Kmeans 0)":
-    st.title("📊 Analyse : Cluster spécifique (Kmeans 0)")
-
-    df = df_kmeans0
-    df_rk = df_ranking_K0
-
+    
+    df = df_kmeans0.copy()
+    df_rk = df_ranking_K0.copy()
+    
     # Graphique 1 : Top 5 Part_terre_bio
     st.subheader("🌱 Top 5 pays avec le plus de terres bio")
     df_top5_bio = df[df['Pays'] != 'Médiane'].sort_values('Part_terre_bio', ascending=False).head(5)
@@ -136,25 +131,17 @@ elif menu == "Etude sur un échantillon réduit (cluster Kmean 0)":
     ax2.grid(axis='x', linestyle='--', alpha=0.7)
     st.pyplot(fig2)
 
-    # Graphique 4 : Distance France (sur cluster uniquement)
-    st.subheader("🌍 Classement des pays proches du profil France")
-    df_proches_france_K0 = df[
+    # Graphique 4 : Distance France sur cluster
+    st.subheader("🌍 Classement des pays proches du profil France (Kmeans 0)")
+    df_plot_distance_K0 = df[
         (df['Pays'] != 'FRANCE') & (df['Pays'] != 'Médiane')
-    ].sort_values('Distance_France')
-    df_plot_distance = df_proches_france_K0.head(5).copy()
-
+    ].sort_values('Distance_France').head(5)
     fig3, ax3 = plt.subplots(figsize=(10, 6))
-    sns.barplot(
-        x='Distance_France',
-        y='Pays',
-        data=df_plot_distance,
-        palette='Blues_r',
-        ax=ax3
-    )
+    sns.barplot(x='Distance_France', y='Pays', data=df_plot_distance_K0, palette='Blues_r', ax=ax3)
     ax3.set_title("📊 Classement des pays les + proches du profil France", fontsize=14)
     ax3.set_xlabel("Indice de similarité (distance normalisée par variable)")
     ax3.set_ylabel("Pays")
-    fig3.text(0.5, -0.1,
+    fig3.text(0.5, -0.1, 
         "👉 Ce classement indique quels pays présentent un profil global le + similaire à la France,\n"
         "en tenant compte de l'ensemble des variables business (volaille, bio, PIB, etc.).\n"
         "⚠️ Plus la distance est faible → plus le profil du pays est proche de celui de la France.\n"
