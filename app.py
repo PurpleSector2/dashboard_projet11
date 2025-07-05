@@ -7,18 +7,18 @@ import seaborn as sns
 @st.cache_data
 def load_data():
     df_100 = pd.read_csv("df_100.csv")
-    df_kmeans0 = pd.read_csv("df_kmeans0.csv")
+    df_k3 = pd.read_csv("df_k3.csv")
     df_ranking = pd.read_csv("df_ranking.csv")
-    df_ranking_K0 = pd.read_csv("df_ranking_K0.csv")
-    return df_100, df_kmeans0, df_ranking, df_ranking_K0
+    df_ranking_K3= pd.read_csv("df_ranking_K3.csv")
+    return df_100, df_k3, df_ranking, df_ranking_K3
 
-df_100, df_kmeans0, df_ranking, df_ranking_K0 = load_data()
+df_100, df_k3, df_ranking, df_ranking_K3 = load_data()
 
 # Menu de navigation principal
 menu = st.sidebar.radio("Navigation", [
     "Présentation",
-    "Etude sur l'échantillon entier",
-    "Etude sur un échantillon réduit (cluster Kmean 0)",
+    "Etude sur l'échantillon des 100 pays les plus stable politiquement",
+    "Etude sur un échantillon réduit (cluster Kmean 3",
     "Conclusion"
 ])
 
@@ -31,9 +31,9 @@ if menu == "Présentation":
     Cette étude repose sur une sélection de variables **macroéconomiques** et **sectorielles** (secteur de la **volaille bio**) afin d'identifier un pays avec lequel **initier une relation commerciale** : implantation physique ou échange de flux commerciaux.
     """)
 
-# Etude échantillon complet
-elif menu == "Etude sur l'échantillon entier":
-    st.title("📊 Analyse : Échantillon entier")
+# Etude échantillon 100 pays les plus stable politiquement
+elif menu == "Etude sur l'échantillon des pays les plus stable politiquement":
+    st.title("📊 Analyse : Échantillon des pays les plus stable politiquement")
     df = df_100
     df_rk = df_ranking
 
@@ -95,8 +95,8 @@ elif menu == "Etude sur l'échantillon entier":
     st.pyplot(fig4)
 
 # Etude cluster spécifique
-elif menu == "Etude sur un échantillon réduit (cluster Kmean 0)":
-    st.title("📊 Analyse : Cluster spécifique (Kmeans 0)")
+elif menu == "Etude sur un échantillon réduit (cluster Kmean 3)":
+    st.title("📊 Analyse : Cluster spécifique (Kmeans 3)")
     
     df = df_kmeans0.copy()
     df_rk = df_ranking_K0.copy()
@@ -132,7 +132,7 @@ elif menu == "Etude sur un échantillon réduit (cluster Kmean 0)":
     st.pyplot(fig2)
 
     # Graphique 4 : Distance France sur cluster
-    st.subheader("🌍 Classement des pays proches du profil France (Kmeans 0)")
+    st.subheader("🌍 Classement des pays proches du profil France (Kmeans 3)")
     df_plot_distance_K0 = df[
         (df['Pays'] != 'FRANCE') & (df['Pays'] != 'Médiane')
     ].sort_values('Distance_France').head(5)
