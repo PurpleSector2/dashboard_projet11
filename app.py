@@ -18,7 +18,7 @@ df_100, df_k3, df_ranking, df_ranking_K3 = load_data()
 menu = st.sidebar.radio("Navigation", [
     "Présentation",
     "Etude sur l'échantillon des 100 pays les plus stable politiquement",
-    "Etude sur un échantillon réduit (cluster Kmean 3",
+    "Etude sur un échantillon réduit (cluster Kmean 3)",
     "Conclusion"
 ])
 
@@ -98,8 +98,8 @@ elif menu == "Etude sur l'échantillon des pays les plus stable politiquement":
 elif menu == "Etude sur un échantillon réduit (cluster Kmean 3)":
     st.title("📊 Analyse : Cluster spécifique (Kmeans 3)")
     
-    df = df_kmeans0.copy()
-    df_rk = df_ranking_K0.copy()
+    df = df_k3.copy()
+    df_rk = df_ranking_K3.copy()
     
     # Graphique 1 : Top 5 Part_terre_bio
     st.subheader("🌱 Top 5 pays avec le plus de terres bio")
