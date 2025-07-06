@@ -121,5 +121,3 @@ Ils cumulent plusieurs **avantages stratégiques en lien avec la culture bio**.
 Ce sont des **terres d’accueil favorables au développement du bio**, où l’économie est **structurée autour de ce modèle agricole**.  
 Les **investissements dans ce secteur y sont importants et prometteurs** pour notre activité.
 """)
-
-    - 
