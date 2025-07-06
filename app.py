@@ -108,6 +108,18 @@ elif choice == "Dépendance avec cheptel < 100":
 elif choice == "Conclusion":
     st.header("\U0001F4DD Conclusion")
     st.markdown("""
-    ### Au vu des analyses menées, nous pouvons conclure :
+    ### ✈️ Exportation  
+Le **triptyque Allemagne, Belgique et Pays-Bas** représente trois opportunités solides d’exportation.  
+Ces pays affichent une **forte consommation de volaille** tout en étant **dépendants des importations**.  
+En clair, leur production locale ne suffit pas à couvrir les besoins intérieurs.  
+Ils bénéficient également d’une **économie robuste**, intégrée au **même bassin économique que la France**,  
+ce qui garantit une certaine **stabilité et sécurité sur les perspectives commerciales**.
+
+### 🏭 Implantation  
+**Uruguay, Estonie et Autriche** ressortent comme les pays les plus pertinents pour envisager une implantation.  
+Ils cumulent plusieurs **avantages stratégiques en lien avec la culture bio**.  
+Ce sont des **terres d’accueil favorables au développement du bio**, où l’économie est **structurée autour de ce modèle agricole**.  
+Les **investissements dans ce secteur y sont importants et prometteurs** pour notre activité.
+""")
 
     - 
