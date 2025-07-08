@@ -43,10 +43,23 @@ if choice == "Top 10 par indicateur":
 
     # Indice de dépendance bio
     st.subheader("Indice de dépendance bio")
-    top10_dependance_bio = df[['Pays', 'Indice_dépendance_bio']].sort_values(by='Indice_dépendance_bio', ascending=False).head(10)
-    fig, ax = plt.subplots(figsize=(10,6))
-    sns.barplot(data=top10_dependance_bio, x='Indice_dépendance_bio', y='Pays', ax=ax, color='seagreen')
-    ax.set_title("Top 10 - Indice de dépendance bio")
+    top10_dependance_bio = df[['Pays', 'Indice_dépendance_bio']].sort_values(
+        by='Indice_dépendance_bio', ascending=False).head(10)
+    # Forcer l’ordre des pays pour l’axe Y
+    top10_dependance_bio['Pays'] = pd.Categorical(
+        top10_dependance_bio['Pays'],
+        categories=top10_dependance_bio.sort_values('Indice_dépendance_bio', ascending=True)['Pays'],
+        ordered=True
+    )
+    fig, ax = plt.subplots(figsize=(10, 6))
+    sns.barplot(
+        data=top10_dependance_bio,
+        x='Indice_dépendance_bio',
+        y='Pays',
+        ax=ax,
+        color='seagreen'
+    )
+    ax.set_title("Top 10 – Indice de dépendance bio")
     st.pyplot(fig)
 
     # Bio par crédit
