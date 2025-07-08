@@ -43,7 +43,7 @@ if choice == "Top 10 par indicateur":
 
     # Indice de dépendance bio
     st.subheader("Indice de dépendance bio")
-    top10 = df_filtré_median.nlargest(10, 'Indice_dépendance_bio')[['Pays', 'Indice_dépendance_bio']]
+    top10 = df[['Pays', 'Indice_dépendance_bio']].sort_values(by='Indice_dépendance_bio', ascending=False).head(10)
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.bar(top10['Pays'], top10['Indice_dépendance_bio'], color='seagreen')
     ax.set_title("Top 10 - Indice de dépendance bio")
